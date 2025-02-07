@@ -169,38 +169,66 @@
         <p>Coming soon...</p>
     </section>
 
-    <script>
-        // Language Toggle
-        const translations = {
-            en: {
-                home: "Home",
-                about: "About",
-                projects: "Projects",
-                // Add all other text elements
-            },
-            ar: {
-                home: "الرئيسية",
-                about: "عنّي",
-                projects: "المشاريع",
-                // Add Arabic translations
-            }
-        };
-
-        let currentLang = 'en';
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'ar' : 'en';
-            document.body.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
-            // Update all text elements with translations
+ <script>
+    // كائن يحتوي على الترجمات
+    const translations = {
+        en: {
+            home: "Home",
+            about: "About",
+            projects: "Projects",
+            hello: "Hello I'm <strong>Yossef Ramadan</strong><br>Data Analyst",
+            aboutMe: "About Me",
+            aboutText: "I'm studying Communication Engineering and Computer Skills at El Shorouk Academy.<br>Currently working as a Data Analyst.",
+            contact: "Contact",
+            email: "Email: yosseframadan588@gmail.com",
+            skills: "Skills",
+            projectsTitle: "My Projects",
+            projectsText: "Coming soon..."
+        },
+        ar: {
+            home: "الرئيسية",
+            about: "عنّي",
+            projects: "المشاريع",
+            hello: "مرحبًا، أنا <strong>يوسف رمضان</strong><br>محلل بيانات",
+            aboutMe: "من أنا",
+            aboutText: "أدرس هندسة الاتصالات والمهارات الحاسوبية في أكاديمية الشروق.<br>أعمل حاليًا كمحلل بيانات.",
+            contact: "اتصل بي",
+            email: "البريد الإلكتروني: yosseframadan588@gmail.com",
+            skills: "المهارات",
+            projectsTitle: "مشاريعي",
+            projectsText: "قريبًا..."
         }
+    };
 
-        // Page Navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-        }
-    </script>
+    // استرجاع اللغة المحفوظة أو الافتراضية
+    let currentLang = localStorage.getItem("lang") || "en";
+
+    function toggleLanguage() {
+        currentLang = currentLang === "en" ? "ar" : "en";
+        localStorage.setItem("lang", currentLang);
+        updateLanguage();
+    }
+
+    function updateLanguage() {
+        document.body.style.direction = currentLang === "ar" ? "rtl" : "ltr";
+
+        document.querySelector(".nav-links a[href='#home']").innerText = translations[currentLang].home;
+        document.querySelector(".nav-links a[href='#about']").innerText = translations[currentLang].about;
+        document.querySelector(".nav-links a[href='#projects']").innerText = translations[currentLang].projects;
+        
+        document.querySelector("#home h1").innerHTML = translations[currentLang].hello;
+        document.querySelector("#about h2").innerText = translations[currentLang].aboutMe;
+        document.querySelector("#about p").innerHTML = translations[currentLang].aboutText;
+        document.querySelector("#about h3").innerText = translations[currentLang].contact;
+        document.querySelector("#about p:nth-of-type(2)").innerText = translations[currentLang].email;
+        document.querySelector("#about .skills h2").innerText = translations[currentLang].skills;
+        document.querySelector("#projects h2").innerText = translations[currentLang].projectsTitle;
+        document.querySelector("#projects p").innerText = translations[currentLang].projectsText;
+    }
+
+    // تحديث اللغة عند تحميل الصفحة
+    document.addEventListener("DOMContentLoaded", updateLanguage);
+ </script>
+
 </body>
 </html>
