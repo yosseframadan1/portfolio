@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yossef Ramadan - Data Analyst</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #F5F5DC; /* لون لَبني */
+            --secondary-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            padding: 4rem 5%;
+            min-height: 80vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Home Page */
+        #home {
+            text-align: center;
+            background: linear-gradient(rgba(245, 245, 220, 0.9), rgba(245, 245, 220, 0.7)),
+                        url('images/joo.jpg') center/cover;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 2rem auto;
+            object-fit: cover;
+        }
+
+        /* About Page */
+        #about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Projects Page */
+        #projects {
+            text-align: center;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            background: none;
+            border: 1px solid #333;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #about {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="#home" onclick="showPage('home')">Home</a>
+            <a href="#about" onclick="showPage('about')">About</a>
+            <a href="#projects" onclick="showPage('projects')">Projects</a>
+        </div>
+        <button class="lang-toggle" onclick="toggleLanguage()">EN/AR</button>
+    </nav>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <img src="images/joo.jpg" alt="Yossef Ramadan" class="profile-img">
+        <h1>Hello I'm <strong>Yossef Ramadan</strong><br>Data Analyst</h1>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+        <div class="info">
+            <h2>About Me</h2>
+            <p>I'm studying Communication Engineering and Computer Skills at El Shorouk Academy.<br>
+            Currently working as a Data Analyst.</p>
+            
+            <h3>Contact</h3>
+            <p>Email: yosseframadan588@gmail.com</p>
+        </div>
+
+        <div class="skills">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <i class="fab fa-microsoft"></i>
+                    <span>Excel</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Power BI</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <span>SQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Page -->
+    <section id="projects" class="page">
+        <h2>My Projects</h2>
+        <p>Coming soon...</p>
+    </section>
+
+    <script>
+        // Language Toggle
+        const translations = {
+            en: {
+                home: "Home",
+                about: "About",
+                projects: "Projects",
+                // Add all other text elements
+            },
+            ar: {
+                home: "الرئيسية",
+                about: "عنّي",
+                projects: "المشاريع",
+                // Add Arabic translations
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            document.body.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
+            // Update all text elements with translations
+        }
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
